@@ -23,7 +23,7 @@ def generate_football_result():
     }
 
 def generate_basketball_result():
-    teams = ["LA Lakers", "Boston Celtics", "Chicago Bulls", "Golden State Warriors",
+    teams = ["LA Lakers", "Boston Celtics", "Chicago Bulls", "Baskonia",
              "Miami Heat", "Toronto Raptors", "Dallas Mavericks", "Brooklyn Nets"]
     home_team = random.choice(teams)
     away_team = random.choice([t for t in teams if t != home_team])
