@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resultados-almacenamiento
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultados-almacenamiento
+  template:
+    metadata:
+      labels:
+        app: resultados-almacenamiento
+    spec:
+      containers:
+        - name: resultados-almacenamiento
+          image: resultados-almacenamiento:latest
+          imagePullPolicy: Never

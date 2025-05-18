@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resultados-estadisticas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultados-estadisticas
+  template:
+    metadata:
+      labels:
+        app: resultados-estadisticas
+    spec:
+      containers:
+        - name: resultados-estadisticas
+          image: resultados-estadisticas:latest
+          imagePullPolicy: Never

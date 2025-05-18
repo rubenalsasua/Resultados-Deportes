@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resultados-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultados-producer
+  template:
+    metadata:
+      labels:
+        app: resultados-producer
+    spec:
+      containers:
+        - name: resultados-producer
+          image: resultados-producer:latest
+          imagePullPolicy: Never

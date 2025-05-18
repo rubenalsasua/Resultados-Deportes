@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resultados-alertas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultados-alertas
+  template:
+    metadata:
+      labels:
+        app: resultados-alertas
+    spec:
+      containers:
+        - name: resultados-alertas
+          image: resultados-alertas:latest
+          imagePullPolicy: Never
