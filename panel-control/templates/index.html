@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de Control RabbitMQ</title>
+</head>
+<body>
+    <h1>Panel de Control - Sistema RabbitMQ</h1>
+
+    <h2>Resultados Procesados (MongoDB)</h2>
+    <ul id="datos"></ul>
+
+    <h2>Alertas Generadas</h2>
+    <ul id="alertas"></ul>
+
+    <h2>Estado RabbitMQ</h2>
+    <pre id="estado"></pre>
+
+    <script>
+        async function fetchDatos() {
+            let res = await fetch('/api/datos');
+            let datos = await res.json();
+            const lista = document.getElementById('datos');
+            lista.innerHTML = '';
+            datos.forEach(d => {
+                const li = document.createElement('li');
+                li.textContent = JSON.stringify(d);
+                lista.appendChild(li);
+            });
+        }
+
+        async function fetchAlertas() {
+            let res = await fetch('/api/alertas');
+            let alertas = await res.json();
+            const lista = document.getElementById('alertas');
+            lista.innerHTML = '';
+            alertas.forEach(a => {
+                const li = document.createElement('li');
+                li.textContent = JSON.stringify(a);
+                lista.appendChild(li);
+            });
+        }
+
+        async function fetchEstado() {
+            let res = await fetch('/api/rabbitmq');
+            let estado = await res.json();
+            document.getElementById('estado').textContent = JSON.stringify(estado, null, 2);
+        }
+
+        async function refrescar() {
+            await fetchDatos();
+            await fetchAlertas();
+            await fetchEstado();
+        }
+
+        setInterval(refrescar, 3000);
+        refrescar();
+    </script>
+</body>
+</html>
